@@ -1,0 +1,893 @@
+/* =========================================
+   VARIABEL & RESET DASAR
+   ========================================= */
+:root {
+    --bg-dark: #090d16;
+    --bg-card: rgba(17, 24, 39, 0.78);
+    --border-glass: rgba(255, 255, 255, 0.1);
+    --primary: #10b981;       /* Emerald Cyber Green */
+    --primary-glow: rgba(16, 185, 129, 0.35);
+    --secondary: #38bdf8;     /* Electric Sky Blue */
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    line-height: 1.65;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+/* =========================================
+   NAVIGASI
+   ========================================= */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(9, 13, 22, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-glass);
+    z-index: 1000;
+    padding: 1rem 0;
+}
+
+.nav-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    font-family: var(--font-mono);
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--text-main);
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.nav-logo span {
+    color: var(--primary);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 1.8rem;
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+.nav-links .nav-cta {
+    background: var(--primary);
+    color: #052e16;
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 700;
+}
+
+.nav-links .nav-cta:hover {
+    background: #34d399;
+    color: #052e16;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-main);
+}
+
+/* =========================================
+   PENGATURAN SECTION & BACKGROUND TEMATIK
+   ========================================= */
+.section {
+    position: relative;
+    padding: 6.5rem 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-glass);
+    overflow: hidden;
+}
+
+.bg-overlay {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    z-index: 0;
+}
+
+.bg-overlay::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(9, 13, 22, 0.93) 0%, rgba(9, 13, 22, 0.84) 100%);
+}
+
+/* Gambar Latar Belakang Khusus Tiap Bagian */
+.cover-bg {
+    /* Nuansa GTA Night City / Neon Skyline */
+    background-image: url('https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=1920&q=80');
+}
+
+.profil-bg {
+    /* Nuansa Coding & Arsitektur Sistem */
+    background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1920&q=80');
+}
+
+.toc-bg {
+    /* Nuansa Server & Jaringan Data */
+    background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=80');
+}
+
+.proyek-bg {
+    /* Nuansa Gaming Setup / Cyber Modding */
+    background-image: url('https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=1920&q=80');
+}
+
+.achievement-bg {
+    /* Nuansa Cyber Security & Enkripsi */
+    background-image: url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1920&q=80');
+}
+
+.contact-bg {
+    /* Nuansa Modern Automotive / Tech */
+    background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80');
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+}
+
+.section-tag {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--primary);
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.section-header h2 {
+    font-size: 2.3rem;
+    font-weight: 800;
+    margin-bottom: 0.6rem;
+}
+
+.section-header p {
+    color: var(--text-muted);
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+/* =========================================
+   1. HALAMAN SAMPUL (COVER)
+   ========================================= */
+.cover-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    padding-top: 2rem;
+}
+
+.badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--primary);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    padding: 0.4rem 0.9rem;
+    border-radius: 50px;
+    margin-bottom: 1.2rem;
+}
+
+.main-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    line-height: 1.2;
+    background: linear-gradient(to right, #ffffff, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.8rem;
+}
+
+.author-name {
+    font-size: 1.6rem;
+    color: var(--primary);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+}
+
+.cover-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 0.85rem 1.6rem;
+    border-radius: 10px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: #052e16;
+    box-shadow: 0 0 20px var(--primary-glow);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    background: #34d399;
+}
+
+.btn-outline {
+    border: 1px solid var(--border-glass);
+    color: var(--text-main);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.btn-outline:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+/* Tata Letak 2 Foto Pribadi */
+.cover-photos {
+    position: relative;
+    height: 440px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.photo-card {
+    position: absolute;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    transition: transform 0.4s ease, border-color 0.4s ease;
+    background: #111827;
+}
+
+.photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.photo-main {
+    width: 260px;
+    height: 340px;
+    left: 10%;
+    top: 15px;
+    z-index: 2;
+}
+
+.photo-secondary {
+    width: 220px;
+    height: 290px;
+    right: 8%;
+    bottom: 15px;
+    z-index: 3;
+    border-color: var(--primary);
+}
+
+.photo-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    z-index: 5;
+    border-color: var(--secondary);
+}
+
+.photo-tag {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(9, 13, 22, 0.85);
+    backdrop-filter: blur(6px);
+    padding: 0.3rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    color: var(--primary);
+    border: 1px solid var(--border-glass);
+}
+
+/* =========================================
+   2. PROFIL & PENGALAMAN
+   ========================================= */
+.profil-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 2rem;
+}
+
+.glass-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(14px);
+    border: 1px solid var(--border-glass);
+    border-radius: 18px;
+    padding: 2.2rem;
+}
+
+.glass-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    color: var(--secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+.bio-list {
+    list-style: none;
+    margin-bottom: 1.8rem;
+}
+
+.bio-list li {
+    padding: 0.7rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    color: var(--text-muted);
+}
+
+.bio-list strong {
+    color: var(--text-main);
+}
+
+.vision-box {
+    background: rgba(16, 185, 129, 0.08);
+    border-left: 3px solid var(--primary);
+    padding: 1.2rem;
+    border-radius: 0 12px 12px 0;
+}
+
+.vision-box h4 {
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.vision-box p {
+    font-size: 0.95rem;
+    color: #cbd5e1;
+}
+
+/* Timeline */
+.timeline {
+    border-left: 2px solid var(--primary);
+    padding-left: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+}
+
+.timeline-item {
+    position: relative;
+}
+
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -1.95rem;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--primary);
+    box-shadow: 0 0 10px var(--primary);
+}
+
+.timeline-item .year {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.timeline-item h4 {
+    font-size: 1.05rem;
+    margin: 0.2rem 0;
+}
+
+.timeline-item p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* =========================================
+   3. DAFTAR ISI
+   ========================================= */
+.toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+.toc-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    padding: 1.6rem;
+    border-radius: 16px;
+    text-decoration: none;
+    color: var(--text-main);
+    transition: 0.3s;
+}
+
+.toc-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+    background: rgba(16, 185, 129, 0.08);
+}
+
+.toc-num {
+    font-family: var(--font-mono);
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--primary);
+    background: rgba(16, 185, 129, 0.12);
+    padding: 0.4rem 0.8rem;
+    border-radius: 10px;
+}
+
+.toc-card h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+}
+
+.toc-card p {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+}
+
+/* =========================================
+   4. KARYA & PROYEK
+   ========================================= */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1.8rem;
+    margin-bottom: 3.5rem;
+}
+
+.project-card {
+    position: relative;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid var(--border-glass);
+    background-image: var(--card-bg);
+    background-size: cover;
+    background-position: center;
+    min-height: 310px;
+    display: flex;
+    align-items: flex-end;
+    transition: 0.4s;
+}
+
+.project-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--secondary);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+.project-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(9, 13, 22, 0.98) 35%, rgba(9, 13, 22, 0.65) 100%);
+    z-index: 1;
+}
+
+.project-content {
+    position: relative;
+    z-index: 2;
+    padding: 1.8rem;
+}
+
+.project-year {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--secondary);
+    display: block;
+    margin-bottom: 0.4rem;
+}
+
+.project-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+    color: #ffffff;
+}
+
+.project-content p {
+    font-size: 0.88rem;
+    color: #cbd5e1;
+    margin-bottom: 0.5rem;
+}
+
+.project-content strong {
+    color: var(--primary);
+}
+
+/* Tools */
+.tools-wrapper {
+    text-align: center;
+    background: var(--bg-card);
+    padding: 2rem;
+    border-radius: 18px;
+    border: 1px solid var(--border-glass);
+}
+
+.tools-wrapper h3 {
+    margin-bottom: 1.4rem;
+    font-size: 1.2rem;
+}
+
+.tools-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.9rem;
+}
+
+.tool-badge {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-glass);
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: 0.3s;
+}
+
+.tool-badge:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: scale(1.05);
+}
+
+/* =========================================
+   5. PENCAPAIAN, KLIEN & PRIVASI SERTIFIKAT
+   ========================================= */
+.achievement-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 2rem;
+    align-items: stretch;
+}
+
+.client-stat-card {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.client-avatars {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.2rem;
+}
+
+.avatar-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: #090d16;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin-left: -10px;
+    border: 3px solid var(--bg-dark);
+}
+
+.avatar-icon:first-child {
+    margin-left: 0;
+}
+
+.client-number {
+    font-size: 3.4rem !important;
+    font-weight: 800;
+    color: var(--primary) !important;
+    line-height: 1.1;
+    margin-bottom: 0.3rem !important;
+    justify-content: center;
+}
+
+.client-label {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+}
+
+.client-desc {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+}
+
+.cert-privacy-card .lock-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+}
+
+.cert-privacy-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 1.6rem;
+}
+
+.privacy-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.btn-social {
+    padding: 0.8rem 1.2rem;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.92rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    transition: 0.3s;
+}
+
+.btn-social.wa {
+    background: rgba(37, 211, 102, 0.15);
+    color: #4ade80;
+    border: 1px solid rgba(37, 211, 102, 0.3);
+}
+
+.btn-social.wa:hover {
+    background: #25d366;
+    color: #052e16;
+}
+
+.btn-social.email {
+    background: rgba(56, 189, 248, 0.15);
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.btn-social.email:hover {
+    background: #38bdf8;
+    color: #082f49;
+}
+
+.btn-social.ig {
+    background: rgba(236, 72, 153, 0.15);
+    color: #f472b6;
+    border: 1px solid rgba(236, 72, 153, 0.3);
+}
+
+.btn-social.ig:hover {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: #ffffff;
+}
+
+/* =========================================
+   6. INFORMASI KONTAK
+   ========================================= */
+.contact-section {
+    min-height: 75vh;
+}
+
+.contact-box {
+    text-align: center;
+    background: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    padding: 3.5rem 2rem;
+    border-radius: 24px;
+    backdrop-filter: blur(16px);
+}
+
+.contact-box h2 {
+    font-size: 2.4rem;
+    margin-bottom: 0.8rem;
+}
+
+.contact-box p {
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+}
+
+.contact-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.contact-btn {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.8rem;
+    border-radius: 14px;
+    text-decoration: none;
+    color: var(--text-main);
+    border: 1px solid var(--border-glass);
+    background: rgba(255, 255, 255, 0.04);
+    text-align: left;
+    transition: 0.3s;
+    min-width: 230px;
+}
+
+.contact-btn i {
+    font-size: 1.8rem;
+}
+
+.contact-btn span {
+    display: block;
+    font-weight: 700;
+    font-size: 1.05rem;
+}
+
+.contact-btn small {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+.wa-btn:hover {
+    border-color: #25d366;
+    background: rgba(37, 211, 102, 0.12);
+    transform: translateY(-4px);
+}
+.wa-btn i { color: #25d366; }
+
+.ig-btn:hover {
+    border-color: #e1306c;
+    background: rgba(225, 48, 108, 0.12);
+    transform: translateY(-4px);
+}
+.ig-btn i { color: #f472b6; }
+
+.email-btn:hover {
+    border-color: #38bdf8;
+    background: rgba(56, 189, 248, 0.12);
+    transform: translateY(-4px);
+}
+.email-btn i { color: #38bdf8; }
+
+/* =========================================
+   FOOTER & ANIMASI SCROLL
+   ========================================= */
+footer {
+    text-align: center;
+    padding: 2rem 0;
+    background: #05080f;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.75s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =========================================
+   RESPONSIVE MOBILE
+   ========================================= */
+@media (max-width: 900px) {
+    .cover-grid,
+    .profil-grid,
+    .achievement-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cover-photos {
+        height: 360px;
+        margin-top: 1rem;
+    }
+
+    .photo-main {
+        width: 210px;
+        height: 280px;
+        left: 5%;
+    }
+
+    .photo-secondary {
+        width: 185px;
+        height: 245px;
+        right: 5%;
+    }
+
+    .main-title {
+        font-size: 2.1rem;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #090d16;
+        padding: 1.5rem;
+        border-bottom: 1px solid var(--border-glass);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+}
